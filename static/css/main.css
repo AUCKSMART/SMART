@@ -1,0 +1,48 @@
+body{background-color:#455a64;font-size: 14px;font-family: Segoe UI;}
+.container-inside{width: 95%;margin: 120px auto;}
+.custom_code{margin-left: 5%;}
+.bg-custom{background-color: #263238 !important;}
+.inside-container{margin: 6% auto;width: 92%;}
+.search_box{width: 100%;padding: 2% 3%;background-color: #263238;color:#fafafa;}
+.container-fluid{width: 100%;margin-top: 3%;}
+.bottom_line{border-top: 1px solid #90a4ae;}
+.search_label{margin-right: 10px;font-weight: bold;}
+.search_input{margin-right: 5px;}
+.total_colums{background-color:  #263238;color:#fafafa;}
+.small_box{width: 2.2em;font-size: 0.7em;padding: 2px 2px;text-align: center;}
+.second_row{margin-top: 3%;}
+.second_row_title{margin: 4% 4%;}
+.second_row_bottom{padding: 0%;text-align: center;}
+.left_sub_column{border-left: 1px solid #90a4ae; }
+.airtel_colums{background-color: #ff5252;}
+.tigo_colums{background-color: #1a237e;}
+.viettel_colums{background-color: #ff6d00;}
+.vodacom_colums{background-color: #ff1744;}
+.zantel_colums{background-color: #43a047;}
+.ttcl_colums{background-color:#ffd600;color:#000000;}
+.inner_row{padding: 2em 2em;}
+.bottom_line_2{border-top: 1px solid #fafafa;}
+.sub_column{border-left: 1px solid #fafafa;}
+.custom_column{padding-right: 15px;padding-left: 0px;}
+.custom_column_last{padding-right: 0px;padding-left: 0px;}
+.login-container{width: 50%;margin: 0px auto;min-width: 280px;margin-top: 13%;}
+.article-container{width: 70%;margin: 0px auto;text-align: justify;}
+.staffs_wrapper{width:70%;margin:0px auto;font-style:none; min-width: 300px;}
+.container-custom{margin: 0px auto;width: 90%;}
+#menuList{color:#ffffff;width:100%;font-family:georgia;font-size:13px;background-color:#455a64;}
+#menuList:hover{background-color:#263238;color:#fafafa;border-color:#263238;}
+#menuList-active{background-color:#263238;color:#fafafa;border-color:#263238;width:100%;font-family:georgia;font-size:12px;}
+.bg-internal{background-color:#263238;color: #ffffff;}
+.bg-internal-faint{background-color: #37474f;color: #ffffff;}
+.form-control{background-color:#cfd8dc;color:#263238;}
+.btn-xs,
+.btn-group-xs > .btn {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.operation_div{max-height: 400px;overflow-y: scroll;}
+.type_div{max-height: 400px;overflow-y: scroll;}
+.summary_div{width: 100%;padding: 10px 10px;margin-top: 10px;}
+.transactions_div{max-height: 400px;overflow-y: scroll;}
