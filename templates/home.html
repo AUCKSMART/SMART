@@ -1,0 +1,359 @@
+{% extends 'layout.html' %}
+{% block body %}
+<script type="text/javascript">
+    $(document).ready(function () {
+       $('#from_date').datepicker({
+           format: "yyyy-mm-dd"
+       });
+   });
+   $(document).ready(function () {
+       $('#to_date').datepicker({
+           format: "yyyy-mm-dd"
+       });
+   });  
+</script>
+<div class = "search_box">
+    <h3 class = "font-weight-light mb-4">Search</h3><hr class = "bottom_line mb-4">
+    <form class="form-inline" action = "" method="post">
+        <div class="input-group mb-3 search_input">
+            <label class = "search_label">From</label>
+            <input type="text" class="form-control" placeholder = "Select Date" aria-describedby="basic-addon1" name = "from_date" id = "from_date" required = "true" value={{request.form.from_date}}>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+            </div>
+        </div>
+        <div class="input-group mb-3 search_input">
+            <label class = "search_label">To</label>
+            <input type="text" class="form-control" placeholder = "Select Date" aria-describedby="basic-addon1" name = "to_date" id = "to_date" required = "true" value={{request.form.to_date}}>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <button type="submit" class="btn btn-primary" id="search_m3">Search</button>
+        </div>
+    </form>
+</div>
+<div class = "container-fluid">
+    <div class = "row">
+        <div class = "col-md-4 col-lg-4 custom_column">
+            <div class = "card total_colums">
+                <div class = "card-body">
+                    <p class = "card-text">
+                        <div class = "col-md-12">
+                                <div class = "second_row_title">
+                                    <h4 class = "font-weight-light mb-3"><i class = "fas fa-align-justify text-primary"></i>&nbsp;Transactions</h4>
+                                </div><hr class = "bottom_line mb-3">
+                            <div class = "second_row_bottom">
+                                <h6 class = "font-weight-light mb-3">TRANSACTIONS{{err}}</h6>
+                                <h4 class = "font-weight-light mb-3">{{total_transaction_all}}</h4>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class = "col-md-4 col-lg-4 custom_column">
+                <div class = "card total_colums">
+                    <div class = "card-body">
+                        <p class = "card-text">
+                            <div class = "second_row_title">
+                                    <h4 class = "font-weight-light mb-3"><span class = "small_box bg-primary text-white">TZS</span>&nbsp;Amount and Fee</h4>
+                            </div><hr class = "bottom_line mb-3">
+                            <div class = "row">
+                                <div class = "col-6">
+                                    <div class = "second_row_bottom">
+                                        <h6 class = "font-weight-light mb-2">AMOUNT</h6>
+                                        <h4 class = "font-weight-light mb-2">{{total_amount_all}}</h4>
+                                    </div>
+                                </div>
+                                <div class = "col-6 left_sub_column">
+                                    <div class = "second_row_bottom">
+                                        <h6 class = "font-weight-light mb-2">FEE</h6>
+                                        <h4 class = "font-weight-light mb-2">{{total_fees_all}}</h4>
+                                    </div>
+                                </div>
+                            </div>    
+                        </p>
+                    </div>
+                </div>
+        </div>
+        <div class = "col-md-4 col-lg-4 custom_column_last">
+            <div class = "card total_colums">
+                <div class = "card-body">
+                  <p class = "card-text">
+                    <div class = "second_row_title">
+                            <h4 class = "font-weight-light mb-3"><span class = "small_box bg-primary text-white">TZS</span>&nbsp;Money</h4>
+                        </div><hr class = "bottom_line mb-3">
+                    <div class = "row">
+                        <div class = "col-6">
+                            <div class = "second_row_bottom">
+                                <h6 class = "font-weight-light mb-2">CASH IN</h6>
+                                <h4 class = "font-weight-light mb-2">{{total_cashin}}</h4>
+                            </div>
+                        </div>
+                        <div class = "col-6 left_sub_column">
+                            <div class = "second_row_bottom">
+                                <h6 class = "font-weight-light mb-2">CASH OUT</h6>
+                                <h4 class = "font-weight-light mb-2">{{total_cashout}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    </p> 
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
+<!--Operators Row-->
+<div class = "container-fluid">
+    <div class = "row mb-4">
+        <div class = "col-md-4 col-lg-4 custom_column">
+            <div class = "card airtel_colums text-white">
+                <div class = "card-body">
+                    <p class = "card-text">
+                        <div class = "second_row_title">
+                            <h2 class = "font-weight-light mb-2"><strong>Airtel</strong></h2>
+                        </div><hr class = "bottom_line_2 mb-2">
+                        <div class = "row">
+                            <div class = "col-6">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH IN</h6>
+                                    <h4 class = "font-weight-light mb-2">{{airtel_cashin}}</h4>
+                                </div>
+                            </div>
+                            <div class = "col-6 sub_column">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH OUT</h6>
+                                    <h4 class = "font-weight-light mb-2">{{airtel_cashout}}</h4>
+                                </div>
+                            </div>
+                           </div>
+                        </p> 
+                    </div>
+                </div>
+            </div>    
+        <div class = "col-md-4 col-lg-4 custom_column">
+            <div class = "card tigo_colums text-white">
+                <div class = "card-body">
+                    <p class = "card-text">
+                        <div class = "second_row_title">
+                            <h2 class = "font-weight-light mb-2"><strong>Tigo</strong></h2>
+                        </div><hr class = "bottom_line_2 mb-2">
+                        <div class = "row">
+                            <div class = "col-6">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH IN</h6>
+                                    <h4 class = "font-weight-light mb-2">{{tigo_cashin}}</h4>
+                                </div>
+                            </div>
+                            <div class = "col-6 sub_column">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH OUT</h6>
+                                    <h4 class = "font-weight-light mb-2">{{tigo_cashout}}</h4>
+                                </div>
+                            </div>
+                          </div>
+                        </p> 
+                    </div>
+                </div>
+         </div>
+        <div class = "col-md-4 col-lg-4 custom_column_last">
+            <div class = "card viettel_colums text-white">
+                <div class = "card-body">
+                    <p class = "card-text">
+                        <div class = "second_row_title">
+                            <h2 class = "font-weight-light mb-2"><strong>Viettel</strong></h2>
+                        </div><hr class = "bottom_line_2 mb-2">
+                        <div class = "row">
+                            <div class = "col-6">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH IN</h6>
+                                    <h4 class = "font-weight-light mb-2">{{viettel_cashin}}</h4>
+                                </div>
+                            </div>
+                            <div class = "col-6 sub_column">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH OUT</h6>
+                                    <h4 class = "font-weight-light mb-2">{{viettel_cashout}}</h4>
+                                </div>
+                            </div>
+                            </div>
+                        </p> 
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!--Another Operator Row-->
+    <div class = "row mb-4">
+        <div class = "col-md-4 col-lg-4 custom_column">
+            <div class = "card vodacom_colums text-white">
+                <div class = "card-body">
+                    <p class = "card-text">
+                        <div class = "second_row_title">
+                            <h2 class = "font-weight-light mb-2"><strong>Vodacom</strong></h2>
+                        </div><hr class = "bottom_line_2 mb-2">
+                        <div class = "row">
+                            <div class = "col-6">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH IN</h6>
+                                    <h4 class = "font-weight-light mb-2">{{vodacom_cashin}}</h4>
+                                </div>
+                            </div>
+                            <div class = "col-6 sub_column">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH OUT</h6>
+                                    <h4 class = "font-weight-light mb-2">{{vodacom_cashout}}</h4>
+                                </div>
+                            </div>
+                            </div>
+                        </p> 
+                    </div>
+                </div>
+        </div>
+        <div class = "col-md-4 col-lg-4 custom_column">
+            <div class = "card zantel_colums text-white">
+                <div class = "card-body">
+                    <p class = "card-text">
+                        <div class = "second_row_title">
+                            <h2 class = "font-weight-light mb-2"><strong>Zantel</strong></h2>
+                        </div><hr class = "bottom_line_2 mb-2">
+                        <div class = "row">
+                            <div class = "col-6">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH IN</h6>
+                                    <h4 class = "font-weight-light mb-2">{{zantel_cashin}}</h4>
+                                </div>
+                            </div>
+                            <div class = "col-6 sub_column">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH OUT</h6>
+                                    <h4 class = "font-weight-light mb-2">{{zantel_cashout}}</h4>
+                                </div>
+                            </div>
+                            </div>
+                        </p> 
+                    </div>
+                </div>
+        </div>
+        <div class = "col-md-4 col-lg-4 custom_column_last">
+            <div class = "card ttcl_colums">
+                <div class = "card-body">
+                    <p class = "card-text">
+                        <div class = "second_row_title">
+                            <h2 class = "font-weight-light mb-2"><strong>TTCL</strong></h2>
+                        </div><hr class = "bottom_line_2 mb-2">
+                        <div class = "row">
+                            <div class = "col-6">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH IN</h6>
+                                    <h4 class = "font-weight-light mb-2">{{ttcl_cashin}}</h4>
+                                </div>
+                            </div>
+                            <div class = "col-6 sub_column">
+                                <div class = "second_row_bottom">
+                                    <h6 class = "font-weight-light mb-2">CASH OUT</h6>
+                                    <h4 class = "font-weight-light mb-2">{{ttcl_cashout}}</h4>
+                                </div>
+                            </div>
+                            </div>
+                        </p> 
+                    </div>
+                </div>
+        </div>
+    </div>
+    <hr class = "mb-4">
+    <!--Summary Per Operators and Operations-->
+    <div class = "row">
+        <div class = "col-md-4 custom_column">
+            <div class = "card total_colums">
+                <div class = "card-body">
+                    <p class = "card-text">
+                        <div class = "second_row_title">
+                            <h6 class = "font-weight-light mb-3"><i class = "fas fa-chart-pie text-primary"></i>&nbsp;Transactions By Operator</h6>
+                        </div>
+                        <div class = "second_row_bottom">
+                            <div class = "table-responsive">
+                                <table class = "table table-sm table-striped bg-internal-faint">
+                                    <thead>
+                                        <th>Operator</th>
+                                        <th>Transactions</th>
+                                        <th>Percent</th>
+                                    </thead>
+                                    {% for transactions in operators_transactions %}
+                                        <tr>
+                                            <td>{{ transactions.operator }}</td>
+                                            <td>{{ transactions.transactions }}</td>
+                                            <td>{{ transactions.percentage }}%</td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class = "col-md-4 custom_column">
+            <div class = "card total_colums">
+                <div class = "card-body">
+                    <p class = "card-text">
+                        <div class = "second_row_title">
+                            <h6 class = "font-weight-light mb-3"><i class = "fas fa-chart-pie text-primary"></i>&nbsp;Amount By Operator</h6>
+                        </div>
+                        <div class = "second_row_bottom">
+                            <div class = "table-responsive">
+                                <table class = "table table-sm table-striped bg-internal-faint">
+                                    <thead>
+                                        <th>Operator</th>
+                                        <th>Amount</th>
+                                        <th>Percent</th>
+                                    </thead>
+                                    {% for amount in operators_amount %}
+                                        <tr>
+                                            <td>{{ amount.operator }}</td>
+                                            <td>{{ amount.amount }}</td>
+                                            <td>{{ amount.percentage }}%</td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class = "col-md-4 custom_column_last">
+            <div class = "card total_colums">
+                <div class = "card-body">
+                    <p class = "card-text">
+                        <p class = "card-text">
+                            <div class = "second_row_title">
+                                <h6 class = "font-weight-light mb-3"><i class = "fas fa-chart-pie text-primary"></i>&nbsp;Fee By Operator</h6>
+                            </div>
+                            <div class = "second_row_bottom">
+                                <div class = "table-responsive">
+                                    <table class = "table table-sm table-striped bg-internal-faint">
+                                        <thead>
+                                            <th>Operator</th>
+                                            <th>Fee</th>
+                                            <th>Percent</th>
+                                        </thead>
+                                        {% for fee in operators_fee %}
+                                            <tr>
+                                                <td>{{ fee.operator }}</td>
+                                                <td>{{ fee.fee }}</td>
+                                                <td>{{ fee.percentage }}%</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

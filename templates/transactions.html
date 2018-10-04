@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+{% block body %}
+<script type="text/javascript">
+    $(document).ready(function () {
+       $('#from_date').datepicker({
+           format: "yyyy-mm-dd"
+       });
+   });
+   $(document).ready(function () {
+       $('#to_date').datepicker({
+           format: "yyyy-mm-dd"
+       });
+   });  
+</script>
+<div class = "search_box mb-4">
+    <h3 class = "font-weight-light mb-4">Search Transactions</h3><hr class = "bottom_line mb-4">
+    <form class="form-inline" action = "" method="post">
+            <div class="input-group mb-3">
+                <label class = "search_label">Operator</label>
+                <select name="operator" class="custom-select mr-sm-2" value={{request.form.operator}} required = "true">
+                    <option value="">Select Operator</option>
+                    <option value="All">All</option>
+                    <option value="Airtel">Airtel</option>
+                    <option value="Tigo">Tigo</option>
+                    <option value="TTCL">TTCL</option>
+                    <option value="Viettel">Viettel</option>
+                    <option value="Vodacom">Vodacom</option>
+                    <option value="Zantel">Zantel</option>
+                </select>
+            </div>
+        <div class="input-group mb-3 search_input">
+            <label class = "search_label">MSISDN</label>
+            <input type="text" class="form-control" placeholder = "Phone Number (Optional)" aria-describedby="basic-addon1" name = "msisdn" value={{request.form.msisdn}}>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
+            </div>
+        </div>
+        <div class="input-group mb-3 search_input">
+            <label class = "search_label">From</label>
+            <input type="text" class="form-control" placeholder = "Select Date" aria-describedby="basic-addon1" name = "from_date" id = "from_date" required = "true" value={{request.form.from_date}}>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+            </div>
+        </div>
+        <div class="input-group mb-3 search_input">
+            <label class = "search_label">To</label>
+            <input type="text" class="form-control" placeholder = "Select Date" aria-describedby="basic-addon1" name = "to_date" id = "to_date" required = "true" value={{request.form.to_date}}>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <button type="submit" class="btn btn-primary" id="search_m3">Search</button>
+        </div>
+    </form>
+</div>
+    {% if msg %}
+        <div class="card bg-internal-faint">
+            <div class="card-header text-white bg-internal" style="font-size:14px;"><i class="fas fa-chart-line fa-lg"></i>&nbsp;TRANSACTIONS</div>
+            <div class="card-body">
+                {% include 'includes/_messages.html' %}
+            </div>
+        </div>
+    {% elif transactions %}
+        <div class="card bg-internal-faint">
+            <div class="card-header text-white bg-internal" style="font-size:14px;"><i class="fas fa-chart-line fa-lg text-primary"></i>&nbsp;TRANSACTIONS&nbsp;<span class = "badge badge-primary">{{transaction_count}}</span></div>
+            <div class="card-body">
+                <div class = "transactions_div">
+                    <div class = "table-responsive">
+                        <table class = "table table-sm table-bordered table-striped bg-internal shadow table-inverse">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Transaction&nbsp;ID</th>
+                                    <th>Transaction&nbsp;Date</th>
+                                    <th>Sender</th>
+                                    <th>Recepient</th>
+                                    <th>Amount (TZS)</th>
+                                    <th>Operation</th>
+                                </tr>
+                                </thead>
+                                {% for transaction in transactions %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{transaction.transaction_id}}</td>
+                                    <td>{{transaction.transaction_date}}</td>
+                                    <td>{{transaction.sender}}</td>
+                                    <td>{{transaction.recepient}}</td>
+                                    <td>{{millify(transaction.amount)}}</td>
+                                    <td>{{transaction.products_brand}}</td>
+                                </tr>
+                                {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <div class = "summary_div">
+                    <div class = "row">
+                        <div class = "col-4"><a href = "/transaction_csv/{{transactions_file}}" class = "btn btn-success btn-sm"><i class = "fas fa-file-excel"></i>&nbsp;Export CSV</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

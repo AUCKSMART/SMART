@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-custom mb-4">
+    <div class = "container">
+        <img src="/static/images/logo.png" width="60px" height="60px" class="img-fluid">
+        &nbsp;<a class="navbar-brand" href="/" style="font-size: 1.5em;">Mobile Money</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto custom_code">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Real Time
+                    </a>
+                    <div class="dropdown-menu shadow" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Real Time</a>
+                    <a class="dropdown-item" href="#">Report</a></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/reports">Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Mediations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/operations">Operations</a>
+                </li>
+                {% if session.level == "Administrator" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/staffs">Staffs</a>
+                    </li>
+                {% elif session.level == "Senior Staff" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/staffs">Staffs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/transactions">Transactions</a>
+                    </li>
+                {% elif session.level == "Developer" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/staffs">Staffs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/staffs">Staffs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/transactions">Transactions</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-user"></i>&nbsp;{{session.firstname}}&nbsp;{{session.surname}}
+                    </a>
+                    <div class="dropdown-menu shadow" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                    <a class="dropdown-item" href="/change_pwd">Change Password</a></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

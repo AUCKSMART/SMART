@@ -1,0 +1,144 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class = "row">
+    <div class = "col-md-2">
+       <div class="card bg-internal-faint">
+         <div class="card-header text-white bg-internal" style="font-size:14px;">MANAGE STAFFS</div>
+         <div class="card-body">
+           <ul class="list-group">
+             <a href="/register" id="menuList" class="list-group-item"><i class="fas fa-user-plus fa-lg"></i>&nbsp;Add Staff</a>
+             <a href="/staffs" id="menuList-active" class="list-group-item"><i class="fas fa-eye fa-lg"></i>&nbsp;View Staffs</a>
+           </ul>
+         </div>
+       </div>
+    </div>
+    <div class = "col-md-10">
+     <div class="card bg-internal-faint">
+        <div class="card-header text-white bg-internal" style="font-size:14px;"><i class="fas fa-edit fa-lg"></i>&nbsp;EDIT STAFF</div>
+         <div class="card-body">
+           <p>Here you can edit details of registered users who will be interacting with the system.</p><br>
+             <div class="staffs_wrapper">
+                {% include 'includes/_messages.html' %}
+                <form class="form" action = "" method = "POST">
+                <div class = "form-row">
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-tags"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Enter Staff ID" aria-describedby="basic-addon1" name = "staff_id" required = "true" value ={{request.form.staff_id}}>
+                   </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-user"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Enter First name" aria-label="Enter First name" aria-describedby="basic-addon1" name = "firstname" id = "firstname" required = "true" onkeypress="return textsonly(event)" value ={{request.form.firstname}}>
+                   </div>
+                  </div>
+                </div>
+                <div class = "form-row">
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-user"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Enter Othername" aria-describedby="basic-addon1" name = "othername" value ={{request.form.othername}}>
+                   </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-user"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Enter Surname" aria-describedby="basic-addon1" name = "surname" id = "surname" required = "true" onkeypress="return textsonly(event)" value ={{request.form.surname}}>
+                   </div>
+                  </div>
+                </div>
+                <div class = "form-row">
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-phone"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Enter Phone Number" aria-describedby="basic-addon1" name = "phone" id = "phone" required = "true" onkeypress="return numbersonly(event)" value ={{request.form.phone}}>
+                   </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                       </div>
+                       <input type="email" class="form-control" placeholder="Enter E-mail Address" aria-describedby="basic-addon1" name = "email" value ={{request.form.email}}>
+                   </div>
+                  </div>
+                </div>
+                <div class="form-row mb-3">
+                  <div class = "col-md-6">
+                   <div class="form-row">
+                    <div class="col-4 col-sm-4 col-md-4"><label class="mr-sm-2" for="inlineFormCustomSelect"><b>Gender</b></label></div>
+                       <div class="col-xs- col-sm-8 col-md-8">
+                         <select class="custom-select mr-sm-2" name = "gender" value ={{request.form.gender}}>
+                             <option value ={{request.form.gender}}>{{request.form.gender}}</option>
+                             <option value = "Male">Male</option>
+                             <option value = "Female">Female</option>
+                         </select>
+                       </div>
+                       </div>
+                     </div>
+                     <div class = "col-md-6">
+                       <div class="form-row">
+                        <div class="col-4 col-sm-4 col-md-4"><label class="mr-sm-2" for="inlineFormCustomSelect"><b>Position</b></label></div>
+                           <div class="col-xs- col-sm-8 col-md-8">
+                             <select class="custom-select mr-sm-2" name = "position" value ={{request.form.position}} >
+                                 <option value ={{request.form.position}}>{{request.form.position}}</option>
+                                 <option value="Administrator">Administrator</option>
+                                 <option value="Developer">Developer</option>
+                                 <option value="I.T Officer">I.T Officer</option>
+                                 <option value="NOC Agent">NOC Agent</option>
+                                 <option value="Senior Staff">Senior Staff</option>
+                             </select>
+                           </div>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="form-row">
+                     <div class = "col-md-6">
+                       <div class="form-row">
+                        <div class="col-4 col-sm-4 col-md-4"><label class="mr-sm-2" for="inlineFormCustomSelect"><b>Organization</b></label></div>
+                           <div class="col-xs- col-sm-8 col-md-8">
+                             <select class="custom-select mr-sm-2" name = "organization" value ={{request.form.organization}}>
+                                 <option value ={{request.form.organization}}>{{request.form.organization}}</option>
+                                 <option value = "BOT">BOT</option>
+                                 <option value = "TCRA">TCRA</option>
+                                 <option value = "TRA">TRA</option>
+                             </select>
+                           </div>
+                           </div>
+                         </div>
+                         <div class = "col-md-6">
+                            <div class="form-row">
+                                <div class="col-4 col-sm-4 col-md-4"><label class="mr-sm-2" for="inlineFormCustomSelect"><b>Status</b></label></div>
+                                <div class="col-xs- col-sm-8 col-md-8">
+                                    <select class="custom-select mr-sm-2" name = "status" value ={{request.form.status}}>
+                                        <option value ={{request.form.status}}>{{request.form.status}}</option>
+                                        <option value = "Blocked">Blocked</option>
+                                        <option value = "Unblocked">Unblocked</option>
+                                    </select>
+                                </div>
+                            </div>
+                          </div>
+                       </div><hr>
+                   <div class="form-row">
+                     <div class = "col-md-6">
+                       <button type="submit" name="submit" id="submit-btn" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Edit Staff</button>
+                     </div>
+                   </div>
+                </form>
+             </div>
+         </div>
+     </div>
+    </div>
+  </div>
+{% endblock %}

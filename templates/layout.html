@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mobile Money | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/datepicker.css">
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <link rel="icon" href="/static/images/logo.png" width="100%" height="100%" class="img-fluid">
+    <script src="main.js"></script>
+</head>
+<body>
+<script src="/static/js/highcharts/highcharts.js"></script>
+<script src="/static/js/highcharts/series-label.js"></script>
+<script src="/static/js/highcharts/module/exporting.js"></script>
+<script src="/static/js/highcharts/module/export-data.js"></script>
+    <style>
+        .fixed-top {position: fixed;top: 0;right: 0;left: 0;z-index: 1030;}
+    </style>
+    {% include 'includes/_navbar.html' %}
+    <div class = "container-inside">
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/bootstrap-datepicker.js"></script>
+<!--<script src="/static/js/main.js"></script>-->
+<script src="/static/js/bootstrap-datepicker.js"></script>
+</html>

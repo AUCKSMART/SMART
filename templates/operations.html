@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class = "search_box mb-5">
+    <h3 class = "font-weight-light mb-4">Operations</h3><hr class = "bottom_line mb-4">
+    {% if msg %}
+        {% include 'includes/_messages.html' %}
+    {% elif lookup_operations %}
+    <a href = "/add_operation" class = "btn btn-primary btn-md mb-4">Add</a>&nbsp;<a href = "/delete_operation" class = "btn btn-danger btn-md mb-4">Delete</a>
+     <div class = "transactions_div">
+        <div class = "table-responsive">
+            <table class = "table table-sm table-striped bg-internal-faint shadow table-inverse" style="text-align: center;">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Operator</th>
+                            <th>Type</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    {% for operations in lookup_operations %}
+                        <tr>
+                            <td>{{operations.name}}</td>
+                            <td>{{operations.operator}}</td>
+                            <td>{{operations.type}}</td>
+                            <td>{{operations.from}}</td>
+                            <td>{{operations.to}}</td>
+                            <td><a href = "/edit_operation/{{operations.id}}" class="btn btn-primary btn-xs" data-toggle = "tooltip" data-placement = "top" title = "Edit Operations"><i class = "fas fa-edit"></i></a></td>
+                        </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class = "summary_div">
+        <div class = "row">
+            <div class = "col-4">Total Records:&nbsp;<span class = "badge badge-primary badge-lg">{{ total_rows }}</span></div>
+            <div class = "col-4"></div>
+            <div class = "col-4" align = "right"><a href = "/download_operations/{{operation_file}}" class = "btn btn-success btn-sm"><i class = "fas fa-file-excel"></i>&nbsp;Export CSV</a></div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class = "search_box mb-4">
+    <h3 class = "font-weight-light mb-4">Operation Types</h3><hr class = "bottom_line mb-4">
+    <div class = "row">
+        <div class = "col-md-4">
+            <p>OUT - Cash out services<br>
+               IN - Cash in services<br>
+               O2B - Operator to business<br>
+               USER OP - User operations<br>
+               AIRTIME - Airtime transaction<br>
+               B2P - Business to Person funds transfer</p>
+        </div>
+        <div class = "col-md-4">
+            <p>P2B - Person to Business funds transfer<br>
+               MERCHANT OP - Merchant operation<br>
+               A2A - Account to Account funds transfer<br>
+               B2B - Business to Business transaction<br>
+               O2P - Operator to Person<br></p>
+        </div>
+        <div class = "col-md-4">
+            <p>OPER OP - Operator Operation<br>
+               P2P - Person to Person funds transfer<br>
+               P2P NR - Person to non-registered person fund transfer<br>
+               B2P NR - Business to non-registered person fund transfer<br>
+               OTH - OTHER<br></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

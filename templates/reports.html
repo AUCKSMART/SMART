@@ -1,0 +1,156 @@
+{% extends 'layout.html' %}
+{% block body %}
+<script type="text/javascript">
+    $(document).ready(function () {
+       $('#from_date').datepicker({
+           format: "yyyy-mm-dd"
+       });
+   });
+   $(document).ready(function () {
+       $('#to_date').datepicker({
+           format: "yyyy-mm-dd"
+       });
+   });  
+</script>
+<div class = "search_box mb-4">
+    <h3 class = "font-weight-light mb-4">Search</h3><hr class = "bottom_line mb-4">
+    <form class="form-inline" action = "" method="post">
+            <div class="input-group mb-3">
+                <label class = "search_label">Operator</label>
+                <select name="operator" class="custom-select mr-sm-2" value={{request.form.operator}} required = "true">
+                    <option value="">Select Operator</option>
+                    <option value="All">All</option>
+                    <option value="Airtel">Airtel</option>
+                    <option value="Tigo">Tigo</option>
+                    <option value="TTCL">TTCL</option>
+                    <option value="Viettel">Viettel</option>
+                    <option value="Vodacom">Vodacom</option>
+                    <option value="Zantel">Zantel</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <label class = "search_label">Type</label>
+                <select name="type" class="custom-select mr-sm-2" value={{request.form.operator}} required = "true">
+                    <option value="">Select Type</option>
+                    <option value="All">All</option>
+                    <option value="OUT">OUT</option>
+                    <option value="IN">IN</option>
+                    <option value="USER OP">USER OP</option>
+                    <option value="AIRTIME">AIRTIME</option>
+                    <option value="B2P">B2P</option>
+                    <option value="P2B">P2B</option>
+                    <option value="MERCHANT OP">MERCHANT OP</option>
+                    <option value="A2A">A2A</option>
+                    <option value="B2B">B2B</option>
+                    <option value="O2P">O2P</option>
+                    <option value="OPER OP">OPER OP</option>
+                    <option value="P2P">P2P</option>
+                    <option value="P2P NR">P2P NR</option>
+                    <option value="B2P NR">B2P NR</option>
+                    <option value="OTH">OTH</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                    <label class = "search_label">Operation</label>
+                    <select name="operation" class="custom-select mr-sm-2" value={{request.form.operator}} required = "true">
+                        <option value="">Select Operation</option>
+                        <option value="All">All</option>
+                    </select>
+                </div>
+        <div class="input-group mb-3 search_input">
+            <label class = "search_label">From</label>
+            <input type="text" class="form-control" placeholder = "Select Date" aria-describedby="basic-addon1" name = "from_date" id = "from_date" required = "true" value={{request.form.from_date}} size = 12>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+            </div>
+        </div>
+        <div class="input-group mb-3 search_input">
+            <label class = "search_label">To</label>
+            <input type="text" class="form-control" placeholder = "Select Date" aria-describedby="basic-addon1" name = "to_date" id = "to_date" required = "true" value={{request.form.to_date}} size = 12>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <button type="submit" class="btn btn-primary" id="search_m3">Search</button>
+        </div>
+    </form>
+</div>
+    <div class = "row">
+        <div class = "col-md-6">
+            <div class="card bg-internal">
+                <div class="card-header bg-internal" style="font-size:15px;"><i class="fas fa-chart-line fa-lg text-primary"></i>&nbsp;Transactions By Operations</div>
+                <div class="card-body">
+                    <div class = "operation_div">
+                        <div class = "responsive">
+                            <table class = "table table-sm table-striped bg-internal-faint">
+                                <thead>
+                                    <th>Operation</th>
+                                    <th>Transactions</th>
+                                    <th>Amount</th>
+                                    <th>Fee</th>
+                                    <th>Type</th>
+                                    <th>Operator</th>
+                                </thead>
+                                {% for operation in op_transactions %}
+                                    <tr>
+                                        <td>{{operation.operation}}</td>
+                                        <td>{{millify(operation.transactions)}}</td>
+                                        <td>{{millify(operation.amount)}}</td>
+                                        <td>{{millify(operation.fee)}}</td>
+                                        <td>{{operation.type}}</td>
+                                        <td>{{operation.operator}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                    <div class = "summary_div">
+                        <div class = "row">
+                            <div class = "col-4">Total Records:&nbsp;<span class = "badge badge-primary badge-lg">{{ total_row['operation'] }}</span></div>
+                            <div class = "col-4"></div>
+                            <div class = "col-4" align = "right"><a href = "/operation_csv/{{op_filename}}" class = "btn btn-success btn-sm"><i class = "fas fa-file-excel"></i>&nbsp;Export CSV</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "col-md-6">
+            <div class="card bg-internal">
+                <div class="card-header bg-internal" style="font-size:15px;"><i class="fas fa-chart-line fa-lg text-primary"></i>&nbsp;Transaction By Operation Types</div>
+                <div class="card-body">
+                    <div class = "type_div">
+                        <div class = "responsive">
+                            <table class = "table table-sm table-striped bg-internal-faint shadow">
+                                <thead>
+                                    <th>Type</th>
+                                    <th>Transactions</th>
+                                    <th>Amount</th>
+                                    <th>Fee</th>
+                                    <th>Operator</th>
+                                </thead>
+                                {% for type in type_transaction %}
+                                    <tr>
+                                        <td>{{type.type}}</td>
+                                        <td>{{millify(type.transactions)}}</td>
+                                        <td>{{millify(type.amount)}}</td>
+                                        <td>{{millify(type.fee)}}</td>
+                                        <td>{{type.operator}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                    <div class = "summary_div">
+                        <div class = "row">
+                            <div class = "col-4">Total Records:&nbsp;<span class = "badge badge-primary badge-lg">{{ total_row['type'] }}</span></div>
+                            <div class = "col-4"></div>
+                            <div class = "col-4" align = "right"><a href = "/type_csv/{{type_filename}}" class = "btn btn-success btn-sm"><i class = "fas fa-file-excel"></i>&nbsp;Export CSV</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class = "row">
+    <div class = "col-md-2">
+       <div class="card bg-internal-faint">
+         <div class="card-header text-white bg-internal" style="font-size:14px;">MANAGE STAFFS</div>
+         <div class="card-body">
+           <ul class="list-group">
+             <a href="/register" id="menuList-active" class="list-group-item"><i class="fas fa-user-plus fa-lg"></i>&nbsp;Add Staff</a>
+             <a href="/staffs" id="menuList" class="list-group-item"><i class="fas fa-eye fa-lg"></i>&nbsp;View Staffs</a>
+           </ul>
+         </div>
+       </div>
+    </div>
+    <div class = "col-md-10">
+     <div class="card bg-internal-faint">
+        <div class="card-header text-white bg-internal" style="font-size:14px;"><i class="fas fa-user-plus fa-lg"></i>&nbsp;ADD STAFF</div>
+         <div class="card-body">
+           <p>Here you can register users who will be interacting with the system. <b>NOTE: </b>To gain access to the system users will use their staff ID as <b><i>Username</i></b> and Surname as <b><i>Password</i></b> in capital letters.</p><br>
+             <div class="staffs_wrapper">
+                {% include 'includes/_messages.html' %}
+                <form class="form" action = "" method = "POST">
+                <div class = "form-row">
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-tags"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Enter Staff ID" aria-label="Enter Username" aria-describedby="basic-addon1" name = "staff_id" required = "true" value ={{request.form.staff_id}}>
+                   </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-user"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Enter First name" aria-label="Enter First name" aria-describedby="basic-addon1" name = "firstname" id = "firstname" required = "true" onkeypress="return textsonly(event)" value ={{request.form.firstname}}>
+                   </div>
+                  </div>
+                </div>
+                <div class = "form-row">
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-user"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Enter Othername" aria-describedby="basic-addon1" name = "othername" value ={{request.form.othername}}>
+                   </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-user"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Enter Surname" aria-describedby="basic-addon1" name = "surname" id = "surname" required = "true" onkeypress="return textsonly(event)" value ={{request.form.surname}}>
+                   </div>
+                  </div>
+                </div>
+                <div class = "form-row">
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-phone"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Enter Phone Number" aria-describedby="basic-addon1" name = "phone" id = "phone" required = "true" onkeypress="return numbersonly(event)" value ={{request.form.surname}}>
+                   </div>
+                  </div>
+                  <div class = "col-md-6">
+                    <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <span class="input-group-text text-white bg-internal" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                       </div>
+                       <input type="email" class="form-control" placeholder="Enter E-mail Address" aria-describedby="basic-addon1" name = "email" value ={{request.form.email}}>
+                   </div>
+                  </div>
+                </div>
+                <div class="form-row mb-3">
+                  <div class = "col-md-6">
+                   <div class="form-row">
+                    <div class="col-4 col-sm-4 col-md-4"><label class="mr-sm-2" for="inlineFormCustomSelect"><b>Gender</b></label></div>
+                       <div class="col-xs- col-sm-8 col-md-8">
+                         <select class="custom-select mr-sm-2" name = "gender" value ={{request.form.gender}}>
+                             <option selected>Select Gender.....</option>
+                             <option value = "Male">Male</option>
+                             <option value = "Female">Female</option>
+                         </select>
+                       </div>
+                       </div>
+                     </div>
+                     <div class = "col-md-6">
+                       <div class="form-row">
+                        <div class="col-4 col-sm-4 col-md-4"><label class="mr-sm-2" for="inlineFormCustomSelect"><b>Position</b></label></div>
+                           <div class="col-xs- col-sm-8 col-md-8">
+                             <select class="custom-select mr-sm-2" name = "position" value ={{request.form.position}} >
+                                 <option selected>Select Position.....</option>
+                                 <option value="Administrator">Administrator</option>
+                                 <option value="Developer">Developer</option>
+                                 <option value="I.T Officer">I.T Officer</option>
+                                 <option value="NOC Agent">NOC Agent</option>
+                                 <option value="Senior Staff">Senior Staff</option>
+                             </select>
+                           </div>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="form-row">
+                     <div class = "col-md-6">
+                       <div class="form-row">
+                        <div class="col-4 col-sm-4 col-md-4"><label class="mr-sm-2" for="inlineFormCustomSelect"><b>Organization</b></label></div>
+                           <div class="col-xs- col-sm-8 col-md-8">
+                             <select class="custom-select mr-sm-2" name = "organization" value ={{request.form.organization}}>
+                                 <option selected>Select Organization...</option>
+                                 <option value = "BOT">BOT</option>
+                                 <option value = "TCRA">TCRA</option>
+                                 <option value = "TRA">TRA</option>
+                             </select>
+                           </div>
+                           </div>
+                         </div>
+                       </div><hr>
+                   <div class="form-row">
+                     <div class = "col-md-6">
+                       <button type="submit" name="submit" id="submit-btn" class="btn btn-primary"><i class="fas fa-upload"></i>&nbsp;Add Staff</button>
+                     </div>
+                     <div class = "col-md-6">
+                       <button type="reset" class="btn btn-warning"><i class="fas fa-window-close"></i>&nbsp;Clear Fields</button>
+                     </div>
+                   </div>
+                </form>
+             </div>
+         </div>
+     </div>
+    </div>
+  </div>
+{% endblock %}
