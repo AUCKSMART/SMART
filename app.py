@@ -87,7 +87,7 @@ def logout():
     session.clear()
     flash('You have successfully logged out!!','success')
     return redirect(url_for('index'))
-
+git
 @app.route('/home', methods = ['GET','POST'])
 @is_logged_in
 def home():
